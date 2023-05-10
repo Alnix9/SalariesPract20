@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2013bb28374d43799658290a1f8530cb" Name="Diagram1">
+        <EntityTypeShape EntityType="SalariesPr19Model.DepartmentHandbook" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="SalariesPr19Model.SalaryHandbook" Width="1.5" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="SalariesPr19Model.StaffingTable" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="SalariesPr19Model.StructuralEnterprise" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="SalariesPr19Model.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SalariesPr19Model.TimeWorkedTimeSheetSheet" Width="1.5" PointX="5.75" PointY="3.75" />
+        <AssociationConnector Association="SalariesPr19Model.FK_StructuralEnterprise_DepartmentHandbook" />
+        <AssociationConnector Association="SalariesPr19Model.FK_StaffingTable_SalaryHandbook" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

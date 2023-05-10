@@ -1,0 +1,17 @@
+﻿<Window x:Class="SalariesPract19.AddRecord5"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalariesPract19"
+        mc:Ignorable="d"
+        Title="AddRecord5" Height="261" Width="160">
+    <Grid>
+        <Label Content="Структурное подразделение" Margin="-4,0,-10,181"/>
+        <Label Content="Отдел" Margin="3,64,0,135"/>
+        <TextBox Margin="10,19,10,181" x:Name="tbStructuralUnit"/>
+        <TextBox Margin="10,87,10,113" x:Name="tbDepartment"/>
+        <Button Content="Добавить запись" Margin="10,137,10,60" Click="Add_Click5"/>
+        <Button Content="Отмена" Margin="10,190,10,7" Click="Cancel_Click5"/>
+    </Grid>
+</Window>

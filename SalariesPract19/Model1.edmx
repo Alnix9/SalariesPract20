@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище SalariesPr19Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DepartmentHandbook">
+          <Key>
+            <PropertyRef Name="Department" />
+          </Key>
+          <Property Name="Department" Type="int" Nullable="false" />
+          <Property Name="NameOfDepartment" Type="nvarchar" MaxLength="50" />
+          <Property Name="Head" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SalaryHandbook">
+          <Key>
+            <PropertyRef Name="Post" />
+          </Key>
+          <Property Name="Post" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Salary" Type="money" />
+        </EntityType>
+        <EntityType Name="StaffingTable">
+          <Key>
+            <PropertyRef Name="TimeSheetNumber" />
+          </Key>
+          <Property Name="TimeSheetNumber" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" />
+          <Property Name="Post" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="int" />
+        </EntityType>
+        <EntityType Name="StructuralEnterprise">
+          <Key>
+            <PropertyRef Name="StructuralUnit" />
+          </Key>
+          <Property Name="StructuralUnit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Department" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TimeWorkedTimeSheetSheet">
+          <Key>
+            <PropertyRef Name="TimeSheetNumber" />
+          </Key>
+          <Property Name="TimeSheetNumber" Type="int" Nullable="false" />
+          <Property Name="TimeWorkedInDays" Type="int" />
+          <Property Name="NumberOfMonth" Type="int" />
+        </EntityType>
+        <Association Name="FK_StaffingTable_SalaryHandbook">
+          <End Role="SalaryHandbook" Type="Self.SalaryHandbook" Multiplicity="0..1" />
+          <End Role="StaffingTable" Type="Self.StaffingTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalaryHandbook">
+              <PropertyRef Name="Post" />
+            </Principal>
+            <Dependent Role="StaffingTable">
+              <PropertyRef Name="Post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructuralEnterprise_DepartmentHandbook">
+          <End Role="DepartmentHandbook" Type="Self.DepartmentHandbook" Multiplicity="0..1" />
+          <End Role="StructuralEnterprise" Type="Self.StructuralEnterprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentHandbook">
+              <PropertyRef Name="Department" />
+            </Principal>
+            <Dependent Role="StructuralEnterprise">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SalariesPr19ModelContainer">
+          <EntitySet Name="DepartmentHandbook" EntityType="Self.DepartmentHandbook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaryHandbook" EntityType="Self.SalaryHandbook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffingTable" EntityType="Self.StaffingTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StructuralEnterprise" EntityType="Self.StructuralEnterprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeWorkedTimeSheetSheet" EntityType="Self.TimeWorkedTimeSheetSheet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_StaffingTable_SalaryHandbook" Association="Self.FK_StaffingTable_SalaryHandbook">
+            <End Role="SalaryHandbook" EntitySet="SalaryHandbook" />
+            <End Role="StaffingTable" EntitySet="StaffingTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructuralEnterprise_DepartmentHandbook" Association="Self.FK_StructuralEnterprise_DepartmentHandbook">
+            <End Role="DepartmentHandbook" EntitySet="DepartmentHandbook" />
+            <End Role="StructuralEnterprise" EntitySet="StructuralEnterprise" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SalariesPr19Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SalariesPr19Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DepartmentHandbooks" EntityType="SalariesPr19Model.DepartmentHandbook" />
+          <EntitySet Name="SalaryHandbooks" EntityType="SalariesPr19Model.SalaryHandbook" />
+          <EntitySet Name="StaffingTables" EntityType="SalariesPr19Model.StaffingTable" />
+          <EntitySet Name="StructuralEnterprises" EntityType="SalariesPr19Model.StructuralEnterprise" />
+          <EntitySet Name="sysdiagrams" EntityType="SalariesPr19Model.sysdiagram" />
+          <EntitySet Name="TimeWorkedTimeSheetSheets" EntityType="SalariesPr19Model.TimeWorkedTimeSheetSheet" />
+          <AssociationSet Name="FK_StructuralEnterprise_DepartmentHandbook" Association="SalariesPr19Model.FK_StructuralEnterprise_DepartmentHandbook">
+            <End Role="DepartmentHandbook" EntitySet="DepartmentHandbooks" />
+            <End Role="StructuralEnterprise" EntitySet="StructuralEnterprises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffingTable_SalaryHandbook" Association="SalariesPr19Model.FK_StaffingTable_SalaryHandbook">
+            <End Role="SalaryHandbook" EntitySet="SalaryHandbooks" />
+            <End Role="StaffingTable" EntitySet="StaffingTables" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DepartmentHandbook">
+          <Key>
+            <PropertyRef Name="Department" />
+          </Key>
+          <Property Name="Department" Type="Int32" Nullable="false" />
+          <Property Name="NameOfDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Head" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StructuralEnterprises" Relationship="SalariesPr19Model.FK_StructuralEnterprise_DepartmentHandbook" FromRole="DepartmentHandbook" ToRole="StructuralEnterprise" />
+        </EntityType>
+        <EntityType Name="SalaryHandbook">
+          <Key>
+            <PropertyRef Name="Post" />
+          </Key>
+          <Property Name="Post" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="StaffingTables" Relationship="SalariesPr19Model.FK_StaffingTable_SalaryHandbook" FromRole="SalaryHandbook" ToRole="StaffingTable" />
+        </EntityType>
+        <EntityType Name="StaffingTable">
+          <Key>
+            <PropertyRef Name="TimeSheetNumber" />
+          </Key>
+          <Property Name="TimeSheetNumber" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Post" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="Int32" />
+          <NavigationProperty Name="SalaryHandbook" Relationship="SalariesPr19Model.FK_StaffingTable_SalaryHandbook" FromRole="StaffingTable" ToRole="SalaryHandbook" />
+        </EntityType>
+        <EntityType Name="StructuralEnterprise">
+          <Key>
+            <PropertyRef Name="StructuralUnit" />
+          </Key>
+          <Property Name="StructuralUnit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="Int32" />
+          <NavigationProperty Name="DepartmentHandbook" Relationship="SalariesPr19Model.FK_StructuralEnterprise_DepartmentHandbook" FromRole="StructuralEnterprise" ToRole="DepartmentHandbook" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TimeWorkedTimeSheetSheet">
+          <Key>
+            <PropertyRef Name="TimeSheetNumber" />
+          </Key>
+          <Property Name="TimeSheetNumber" Type="Int32" Nullable="false" />
+          <Property Name="TimeWorkedInDays" Type="Int32" />
+          <Property Name="NumberOfMonth" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_StructuralEnterprise_DepartmentHandbook">
+          <End Type="SalariesPr19Model.DepartmentHandbook" Role="DepartmentHandbook" Multiplicity="0..1" />
+          <End Type="SalariesPr19Model.StructuralEnterprise" Role="StructuralEnterprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentHandbook">
+              <PropertyRef Name="Department" />
+            </Principal>
+            <Dependent Role="StructuralEnterprise">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StaffingTable_SalaryHandbook">
+          <End Type="SalariesPr19Model.SalaryHandbook" Role="SalaryHandbook" Multiplicity="0..1" />
+          <End Type="SalariesPr19Model.StaffingTable" Role="StaffingTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalaryHandbook">
+              <PropertyRef Name="Post" />
+            </Principal>
+            <Dependent Role="StaffingTable">
+              <PropertyRef Name="Post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SalariesPr19ModelContainer" CdmEntityContainer="SalariesPr19Entities">
+          <EntitySetMapping Name="DepartmentHandbooks">
+            <EntityTypeMapping TypeName="SalariesPr19Model.DepartmentHandbook">
+              <MappingFragment StoreEntitySet="DepartmentHandbook">
+                <ScalarProperty Name="Head" ColumnName="Head" />
+                <ScalarProperty Name="NameOfDepartment" ColumnName="NameOfDepartment" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryHandbooks">
+            <EntityTypeMapping TypeName="SalariesPr19Model.SalaryHandbook">
+              <MappingFragment StoreEntitySet="SalaryHandbook">
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffingTables">
+            <EntityTypeMapping TypeName="SalariesPr19Model.StaffingTable">
+              <MappingFragment StoreEntitySet="StaffingTable">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="TimeSheetNumber" ColumnName="TimeSheetNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StructuralEnterprises">
+            <EntityTypeMapping TypeName="SalariesPr19Model.StructuralEnterprise">
+              <MappingFragment StoreEntitySet="StructuralEnterprise">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="StructuralUnit" ColumnName="StructuralUnit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SalariesPr19Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeWorkedTimeSheetSheets">
+            <EntityTypeMapping TypeName="SalariesPr19Model.TimeWorkedTimeSheetSheet">
+              <MappingFragment StoreEntitySet="TimeWorkedTimeSheetSheet">
+                <ScalarProperty Name="NumberOfMonth" ColumnName="NumberOfMonth" />
+                <ScalarProperty Name="TimeWorkedInDays" ColumnName="TimeWorkedInDays" />
+                <ScalarProperty Name="TimeSheetNumber" ColumnName="TimeSheetNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
